@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+          
+          window.onload = function(){
+            const buttons = document.querySelectorAll('.question1');
+            const buttonValue = [];
+            const correctAnswer = ["B"];
+
+            buttons.forEach(button => {
+              button.addEventListener('click', () => {
+                console.log('Knop is geklikt');
+                disableButtons('.question1');
+                if (button.dataset.answer === correctAnswer[0]){
+                  button.classList.add('correct');
+                  feedbackDiv.textContent = 'Correct!';
+
+                }else{
+                  button.classList.add('wrong')
+                  feedbackDiv.textContent = 'Wrong!';
+                }
+              })});
+          // function checkAnswer(){
+          document.querySelector('#check').addEventListener('click', function() {
+              let Answer = document.getElementById("userAnswer");
+              const correctAnswer = "Bruxelles";
+
+              if (Answer.value.toLowerCase() === correctAnswer.toLowerCase()){
+                result.textContent = 'Correct!';
+                Answer.style.backgroundColor = 'green';
+                //turngreen(event);
+                console.log(event.target);
+                //Answer.classList.add('correct');
+                //Answer.classList.remove('wrong');
+              }else{
+                result.textContent = 'Wrong!';
+                Answer.style.backgroundColor = 'red';
+                //turnred(event);
+                //Answer.classList.add('wrong');
+                //Answer.classList.remove('correct');
+              }
+            });
+          }
+
+          function turnred(event){
+            event.target.style.backgroundColor='red';
+          }
+
+          function turngreen(event){
+            event.target.style.backgroundColor='green';
+          }
+
+          // function checkAnswer(){
+          /*document.querySelector('#check').addEventListener('click', function() {
+              let Answer = document.getElementById("userAnswer");
+              const correctAnswer = "Bruxelles";
+
+              if (Answer.value.toLowerCase() === correctAnswer.toLowerCase()){
+                result.textContent = 'Correct!';
+                Anwer.style.backgroundColor = 'green';
+                //turngreen(event);
+                console.log(event.target);
+                //Answer.classList.add('correct');
+                //Answer.classList.remove('wrong');
+              }else{
+                result.textContent = 'Wrong!';
+                Answer.style.backgroundColor = 'red';
+                //turnred(event);
+                //Answer.classList.add('wrong');
+                //Answer.classList.remove('correct');
+              }
+            });
+*/
+          function disableButtons(clickedButtonId){
+            const buttonsQuestion1 = document.querySelectorAll('.question1');
+            
+            buttonsQuestion1.forEach(button => {
+            // Als de knop niet de aangeklikte knop is, schakel hem dan uit
+              if (button.id !== clickedButtonId) {
+                button.disabled = true;
+              }
+            });
+          }
+
+
+          
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+          <form id="quiz-form">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <!-- TODO: Add multiple choice question here -->
+                
+                  <h3>If you have a bowl with six apples and you take away four, how many apples do you have? </h3>
+                    <br>
+                    <div id="feedbackDiv"></div>
+                    <br>
+                    <button class='question1' type="button" id="A" data-answer="A">A. Three apples </button><br><br>
+                    <button class='question1' type="button" id="B" data-answer="B">B. Four apples  </button><br><br>
+                    <button class='question1' type="button" id="C" data-answer="C">C. Two apples </button><br><br>
+                    <button class='question1' type="button" id="D" data-answer="D">D. One apple </button><br><br>
+            </div>
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <!-- TODO: Add free response question here -->
+                  <h3><label> What is the capital of Belgium? </label></h3>
+                  <div id="result"></div>
+                  <br>
+                  <input type="text" id="userAnswer" placeholder="Answer">
+                  <button id="check" type="button">Check</button>
+            </div>
+            </form>
+        </div>
+    </body>
+</html>
